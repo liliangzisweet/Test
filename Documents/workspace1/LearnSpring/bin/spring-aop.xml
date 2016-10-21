@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+	<bean id="learnAspect" class="com.aspect.LearnAspect"></bean>
+	<bean id="aspectBiz" class="com.aspect.AspectBiz"></bean>
+	<aop:config>
+		<aop:aspect id="learnAspectAop" ref="learnAspect">
+			<aop:pointcut expression="execution(* com.aspect.*Biz.*(..))"
+				id="learnAspectPointcut" />
+			<aop:before method="before" pointcut-ref="learnAspectPointcut" />
+			<aop:after-returning method="returnAfter"
+				pointcut-ref="learnAspectPointcut" />
+			<aop:after-throwing method="afterThrow"
+				pointcut-ref="learnAspectPointcut" />
+			<aop:after method="after" pointcut-ref="learnAspectPointcut" />
+			<aop:around method="around" pointcut-ref="learnAspectPointcut" />
+			<aop:around method="aroundinit"
+				pointcut="execution(* com.aspect.AspectBiz.init(String,int)) and args(name,number)" />
+			<aop:declare-parents types-matching="com.aspect.*(+)"
+				implement-interface="com.aspect.AspectInterface" default-impl="com.aspect.AspectInterfaceImpl" />
+		</aop:aspect>
+	</aop:config>
+</beans>

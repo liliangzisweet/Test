@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="main"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/junit"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/spring-4.0.5"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/aspect"/>
+	<classpathentry kind="lib" path="/Users/liliangzi/Desktop/project/mylib/javax.inject.jar"/>
+	<classpathentry kind="lib" path="/Users/liliangzi/Desktop/project/mylib/commons-logging-1.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
