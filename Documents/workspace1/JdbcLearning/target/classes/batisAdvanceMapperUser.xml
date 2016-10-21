@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.llz.jdbcLearning.myBatisAdvance.StudentOp">
+	<select id="getStudent" parameterType="int" resultMap="studentMap">
+		select
+		s.id as userId,s.name as name, className,c.id as
+		courseId,courseName,t.id,t.name as teacherName
+		from
+		studentInfo s
+		left
+		join
+		courseMap m on s.id=m.studentId
+		left join
+		course
+		c on m.courseId =
+		c.id
+		left join teacherInfo t
+		on c.teacherId = t.id
+		where s.id=#{id}
+	</select>
+
+	<resultMap id="studentMap" type="com.llz.jdbcLearning.myBatisAdvance.Student">
+		<constructor>
+			<idArg column="userId" javaType="int"></idArg>
+			<arg column="name" javaType="String"></arg>
+			<arg column="className" javaType="String"></arg>
+		</constructor>
+		<collection property="courses"
+			ofType="com.llz.jdbcLearning.myBatisAdvance.Course">
+			<id property="courseId" column="courseId"></id>
+			<result property="courseName" column="courseName"></result>
+			<association property="teacher"
+				javaType="com.llz.jdbcLearning.myBatisAdvance.Teacher" column="teacherId">
+				<id property="id" column="id" />
+				<result property="name" column="teacherName" />
+			</association>
+
+		</collection>
+	</resultMap>
+</mapper>
